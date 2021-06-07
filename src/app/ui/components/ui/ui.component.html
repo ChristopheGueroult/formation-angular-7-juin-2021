@@ -1,6 +1,7 @@
 <header class="fixed-top">
 
-  content header
+  <!-- transclusion : projeter des templates dans des templates -->
+  <ng-content></ng-content>
 
 </header>
 <main>
@@ -12,7 +13,7 @@
   <aside>
     <div class="scroller">
 
-      content nav
+      <ng-content></ng-content>
 
     </div>
   </aside>
@@ -21,13 +22,13 @@
 
     <div class="contents">
 
-      content page
+      <ng-content></ng-content>
 
     </div>
 
     <footer>
 
-      content footer
+      <ng-content></ng-content>
 
     </footer>
 
