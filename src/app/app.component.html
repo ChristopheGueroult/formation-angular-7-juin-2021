@@ -5,6 +5,8 @@
   <app-header class="tr-header"></app-header>
   <app-nav class="tr-nav"></app-nav>
   <app-footer class="tr-footer"></app-footer>
-  <div class="tr-content">contenu d'une page</div>
-
+  <router-outlet class="tr-content"></router-outlet>
+  <!-- reste présente dans le DOM, elle utilisée uniquement par le Router
+  qui ajouter dynamiquement des host elements juste en dessous en fonction
+  de la route sur laquelle vous êtes -->
 </app-ui>
