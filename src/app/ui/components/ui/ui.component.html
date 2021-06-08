@@ -1,7 +1,7 @@
 <header class="fixed-top">
 
   <!-- transclusion : projeter des templates dans des templates -->
-  <ng-content></ng-content>
+  <ng-content select=".tr-header"></ng-content>
 
 </header>
 <main>
@@ -13,7 +13,7 @@
   <aside>
     <div class="scroller">
 
-      <ng-content></ng-content>
+      <ng-content select=".tr-nav"></ng-content>
 
     </div>
   </aside>
@@ -22,13 +22,13 @@
 
     <div class="contents">
 
-      <ng-content></ng-content>
+      <ng-content select=".tr-content"></ng-content>
 
     </div>
 
     <footer>
 
-      <ng-content></ng-content>
+      <ng-content select=".tr-footer"></ng-content>
 
     </footer>
 
