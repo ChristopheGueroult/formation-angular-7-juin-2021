@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from 'src/app/core/models/order';
 import { OrdersService } from '../../services/orders.service';
 
 @Component({
@@ -8,9 +9,25 @@ import { OrdersService } from '../../services/orders.service';
 })
 export class PageListOrdersComponent implements OnInit {
   public title = 'List Orders';
-  constructor(private ordersService: OrdersService) {}
+  public collection!: Order[];
+  public headers = [
+    'Type',
+    'Client',
+    'NbJours',
+    'TjmHT',
+    'TotalHT',
+    'TotalTTC',
+    'State',
+  ];
+  constructor(private ordersService: OrdersService) {
+    this.ordersService.collection.subscribe((data) => {
+      this.collection = data;
+      console.log(data);
+    });
+  }
 
   ngOnInit(): void {}
+
   public changeTitle(): void {
     this.title = 'New List Orders';
   }
