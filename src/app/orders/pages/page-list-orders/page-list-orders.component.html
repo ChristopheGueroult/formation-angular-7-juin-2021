@@ -1,14 +1,15 @@
-<app-template-full-width [title]="title" *ngIf="collection">
+<app-template-full-width [title]="title" *ngIf="collection$ | async as collection">
   <button (click)="changeTitle()">Change title value</button>
+  <!-- {{ collection | json }} -->
   <app-table-light [headers]="headers">
 
     <tr *ngFor="let item of collection">
       <td>{{ item.typePresta }}</td>
-      <td>{{ item.client }}</td>
+      <td>{{ item.client | titlecase }}</td>
       <td>{{ item.nbJours }}</td>
-      <td>{{ item.tjmHt }}</td>
-      <td>{{ item | total }}</td>
-      <td>{{ item | total: true }}</td>
+      <td>{{ item.tjmHt | currency }}</td>
+      <td>{{ item | total | currency }}</td>
+      <td>{{ item | total: true | currency }}</td>
       <td>{{ item.state }}</td>
     </tr>
 
