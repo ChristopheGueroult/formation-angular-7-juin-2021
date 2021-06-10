@@ -1,3 +1,19 @@
-<app-template-full-width>
-  <p style="background: red;">mkljdfgjmlkfdsj</p>
+<app-template-full-width [title]="title" *ngIf="collection$ | async as collection">
+
+  <app-table-light [headers]="headers">
+
+    <tr *ngFor="let item of collection">
+      <td>{{ item.name }}</td>
+      <td>{{ item.totalCaHt | currency }}</td>
+      <td>{{ item.tva | currency }}</td>
+      <td>{{ item | total: true | currency }}</td>
+      <td [appState]="item.state">
+        <select (change)="changeState(item, $event)">
+          <option *ngFor="let state of states" [value]="state" [selected]="item.state === state">{{ state }}</option>
+        </select>
+      </td>
+    </tr>
+
+  </app-table-light>
+  <app-btn></app-btn>
 </app-template-full-width>

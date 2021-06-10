@@ -14,7 +14,7 @@
       "tjmHt": 1200,
       "nbJours": 10,
       "tva": 20,
-      "state": "OPTION",
+      "state": "CONFIRMED",
       "typePresta": "formation",
       "client": "Modis",
       "comment": "fgddhf",
@@ -33,7 +33,7 @@
   ],
   "clients": [
     {
-      "state": "ACTIVE",
+      "state": "INACTIVE",
       "tva": 20,
       "id": 1,
       "name": "Capgemini",

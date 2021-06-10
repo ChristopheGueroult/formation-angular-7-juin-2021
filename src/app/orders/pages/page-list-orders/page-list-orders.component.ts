@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { StateOrder } from 'src/app/core/enums/state-order';
 import { Order } from 'src/app/core/models/order';
 import { OrdersService } from '../../services/orders.service';
 
@@ -25,6 +26,7 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
     'TotalTTC',
     'State',
   ];
+  public states = Object.values(StateOrder);
   constructor(private ordersService: OrdersService) {
     // this.ordersService.collection.subscribe((data) => {
     //   this.collection = data;
@@ -41,6 +43,14 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
 
   public changeTitle(): void {
     this.title = 'New List Orders';
+  }
+
+  public changeState(item: Order, e: any): void {
+    const state = e.target.value;
+    this.ordersService.changeState(item, state).subscribe((res) => {
+      // traiter codes erreur return by api
+      Object.assign(item, res);
+    });
   }
 
   ngOnDestroy(): void {

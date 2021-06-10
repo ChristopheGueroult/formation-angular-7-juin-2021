@@ -2,50 +2,50 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { StateOrder } from 'src/app/core/enums/state-order';
-import { Order } from 'src/app/core/models/order';
+import { StateClient } from 'src/app/core/enums/state-client';
+import { Client } from 'src/app/core/models/client';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
-export class OrdersService {
+export class ClientsService {
   // private collection
-  private collection$!: Observable<Order[]>;
+  private collection$!: Observable<Client[]>;
   private urlApi = environment.urlApi;
   constructor(private http: HttpClient) {
-    this.collection = this.http.get<Order[]>(`${this.urlApi}/orders`).pipe(
+    this.collection = this.http.get<Client[]>(`${this.urlApi}/clients`).pipe(
       tap((flux) => {
         console.log(flux);
       }),
       map((flux) => {
         return flux.map((obj) => {
-          return new Order(obj);
+          return new Client(obj);
         });
       })
     );
   }
 
   // getter collection
-  get collection(): Observable<Order[]> {
+  get collection(): Observable<Client[]> {
     return this.collection$;
   }
 
   // setter collection
-  set collection(col: Observable<Order[]>) {
+  set collection(col: Observable<Client[]>) {
     this.collection$ = col;
   }
 
   // change item state
-  public changeState(item: Order, state: StateOrder): Observable<Order> {
-    const itemWithNewState = new Order({ ...item });
+  public changeState(item: Client, state: StateClient): Observable<Client> {
+    const itemWithNewState = new Client({ ...item });
     itemWithNewState.state = state;
     return this.update(itemWithNewState);
   }
 
   // update item in collection
-  public update(item: Order): Observable<Order> {
-    return this.http.patch<Order>(`${this.urlApi}/orders/${item.id}`, item);
+  public update(item: Client): Observable<Client> {
+    return this.http.patch<Client>(`${this.urlApi}/clients/${item.id}`, item);
   }
 
   // delete item in collecion
