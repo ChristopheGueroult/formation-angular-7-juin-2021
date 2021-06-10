@@ -7,8 +7,8 @@
       <td>{{ item.client }}</td>
       <td>{{ item.nbJours }}</td>
       <td>{{ item.tjmHt }}</td>
-      <td>HT A CALCULER</td>
-      <td>TTC A CALCULER</td>
+      <td>{{ item | total }}</td>
+      <td>{{ item | total: true }}</td>
       <td>{{ item.state }}</td>
     </tr>
 
